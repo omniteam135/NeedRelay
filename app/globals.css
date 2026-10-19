@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  :root, .dark {
+    /* Anchored on #274245 (deep teal) + #DFD6AE (dusty cream) */
+    --background: 186 32% 6%;
+    --foreground: 49 40% 84%;
+    --card: 186 30% 11%;
+    --card-foreground: 49 40% 84%;
+    --popover: 186 32% 9%;
+    --popover-foreground: 49 40% 84%;
+    --primary: 49 43% 78%;            /* #DFD6AE — cream CTA */
+    --primary-foreground: 186 40% 12%; /* dark teal text on cream */
+    --secondary: 186 24% 17%;
+    --secondary-foreground: 49 40% 84%;
+    --muted: 186 22% 14%;
+    --muted-foreground: 49 22% 64%;
+    --accent: 186 34% 30%;            /* #274245 — deep teal accent */
+    --accent-foreground: 49 43% 90%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 50% 48%;
+    --warning: 38 80% 55%;
+    --border: 186 24% 20%;
+    --input: 186 24% 20%;
+    --ring: 49 43% 78%;
+    --chart-1: 49 43% 78%;
+    --chart-2: 186 34% 40%;
+    --chart-3: 186 24% 60%;
+    --chart-4: 142 45% 50%;
+    --chart-5: 38 70% 60%;
+    --radius: 0.6rem;
+  }
+  :root:not(.dark), :root:not(.light) {
+    --background: 186 32% 6%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse-slow 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.35s ease-out;
+  }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-up {
+    animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .scrollbar-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 3px; }
+  .hero-glow {
+    background:
+      radial-gradient(ellipse 80% 70% at 50% -10%, hsl(186 40% 25% / 0.55), transparent 60%),
+      radial-gradient(ellipse 50% 50% at 85% 20%, hsl(49 43% 78% / 0.10), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 10% 40%, hsl(186 34% 18% / 0.6), transparent 60%);
+  }
+  .hero-grid {
+    background-image:
+      linear-gradient(hsl(186 24% 22% / 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(186 24% 22% / 0.4) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse 70% 80% at 50% 0%, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 0%, black 30%, transparent 75%);
+  }
+  .text-cream { color: hsl(49 43% 78%); }
+  .text-cream-muted { color: hsl(49 30% 68%); }
+}
